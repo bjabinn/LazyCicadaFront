@@ -1,0 +1,115 @@
+<div class="no-print" id='cssmenu' >
+  <ul class="text-center">
+    <li class="active text-center" id="inicio"><a routerLink="/home">Facturaci&oacute;n</a></li>
+    <li class="text-center titulo noSelect">HeadCount</li>
+    <li class="text-center active float-right" id="cerrarsesion"><a routerLink="/login">Cerrar sesi&oacute;n</a></li>
+    <li class="usuario text-right float-right noSelect" *ngIf="NombreDeUsuario != null">Usuario: <b>{{NombreDeUsuario}}</b></li>
+  </ul>
+</div>
+
+<form class="basic-container">
+  <mat-form-field >
+    <input (focus)="startObservable(1)" type="text" placeholder="Centro" aria-label="Centros" matInput [formControl]="centroControl" (keyup)="applyFilter($event.target.value)" [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let centro of filteredOptionsCentros | async" [value]="centro">
+        {{centro}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
+
+<form class="basic-container">
+  <mat-form-field>
+    <input (focus)="startObservable(2)" type="text" placeholder="Linea" aria-label="Lineas" matInput [formControl]="lineaControl" (keyup)="applyFilter($event.target.value)" [matAutocomplete]="autoLineas">
+    <mat-autocomplete #autoLineas="matAutocomplete">
+      <mat-option *ngFor="let linea of filteredOptionsLineas | async" [value]="linea">
+        {{linea}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
+
+<form class="basic-container">
+  <mat-form-field>
+    <input (focus)="startObservable(3)" type="text" placeholder="Celda" aria-label="Celdas" matInput [formControl]="celdaControl" (keyup)="applyFilter($event.target.value)" [matAutocomplete]="autoCeldas">
+    <mat-autocomplete #autoCeldas="matAutocomplete">
+      <mat-option *ngFor="let celda of filteredOptionsCeldas | async" [value]="celda">
+        {{celda}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
+
+<form class="basic-container">
+  <mat-form-field>
+    <input (focus)="startObservable(4)" type="text" placeholder="Estado" aria-label="Estados" matInput [formControl]="estadoControl" (keyup)="applyFilter($event.target.value)" [matAutocomplete]="autoEstados">
+    <mat-autocomplete #autoEstados="matAutocomplete">
+      <mat-option *ngFor="let estado of filteredOptionsEstados | async" [value]="estado">
+        {{estado}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
+
+<!-- <form class="example-form basic-container">
+  <mat-form-field class="example-full-width">
+    <input (focus)="startObservable(4)" type="text" placeholder="Cuenta" aria-label="Cuentas" matInput [formControl]="cuentaControl" (keyup)="applyFilter($event.target.value)" [matAutocomplete]="autoCuentas">
+    <mat-autocomplete #autoCuentas="matAutocomplete">
+      <mat-option *ngFor="let cuenta of filteredOptionsCuentas | async" [value]="cuenta">
+        {{cuenta}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form> -->
+
+<mat-form-field class="basic-container">
+  <input matInput [matDatepicker]="picker" placeholder="Elige una fecha">
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+
+<mat-button-toggle-group name="fontStyle" aria-label="Font Style" class="searchButton1">
+  <mat-button-toggle value="bold" class="searchButton2">Buscar</mat-button-toggle>
+</mat-button-toggle-group>
+
+<div class="results">
+  <!-- <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field> -->
+  
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  
+    <!-- Position Column -->
+    <ng-container matColumnDef="position" class="grid-container">
+      <th mat-header-cell *matHeaderCellDef class="headerNum"> 1 </th>
+      <td mat-cell *matCellDef="let element"> 
+        <mat-grid-list cols="2" rowHeight="1:1">
+          <mat-grid-tile colspan="2" class="first">{{element.position}}</mat-grid-tile>
+          <mat-grid-tile class="inter">2</mat-grid-tile>
+          <mat-grid-tile class="inter">3</mat-grid-tile>
+        </mat-grid-list>
+      </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+
+<!-- <mat-button-toggle-group name="fontStyle" aria-label="Font Style" class="addRemButton">
+  <mat-button-toggle value="bold"><i class="material-icons md-36">face</i></mat-button-toggle>
+</mat-button-toggle-group>
+
+<mat-button-toggle-group name="fontStyle" aria-label="Font Style" class="addRemButton">
+  <mat-button-toggle value="bold"><i class="material-icons md-36">delete_forever</i></mat-button-toggle>
+</mat-button-toggle-group> -->
+
+<mat-button-toggle-group name="fontStyle" aria-label="Font Style" class="exportButton">
+  <mat-button-toggle value="bold" class="exportButton2">Exportar a Excel</mat-button-toggle>
+</mat-button-toggle-group>
