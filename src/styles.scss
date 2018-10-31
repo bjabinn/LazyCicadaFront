@@ -85,15 +85,23 @@ mat-grid-tile {
   border-bottom-width: 0px;
 }
 
+th.mat-header-cell {
+    text-align: center !important;
+}
+
 td.mat-cell:last-of-type, td.mat-footer-cell:last-of-type, th.mat-header-cell:last-of-type {
     display: none;
 }
 
 td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type, th.mat-header-cell:first-of-type {
-    padding-left: 12px;
-    width: 261px;
+    padding-left: 12px !important;
+    width: 231px;
 }
 
 .mat-cell, .mat-footer-cell {
     font-size: 11px;
+}
+
+tr.mat-footer-row, tr.mat-row {
+    height: 20px !important;
 }
