@@ -9,7 +9,7 @@ ENV PATH /usr/src/app/node_modules/.bin:$PATH
 COPY package.json /usr/src/app/package.json
 RUN npm config set registry http://registry.npmjs.org/
 RUN npm install
-RUN npm install -g @angular/cli@7.0.3
+RUN npm install -g @angular/cli@7.0.4
 RUN npm install --save @angular/material @angular/cdk @angular/animations
 RUN npm install --save bootstrap
 # Prepare the port to be displayed

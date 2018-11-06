@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
@@ -7,23 +7,25 @@ import {MatTableDataSource} from '@angular/material';
 
 export interface PeriodicElement {
   name: string;
-  position: number;
+  normalH: number;
+  extraH: number;
+  tlfH: number;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Daniel González Morillo'},
-  {position: 2, name: 'Cristian Antonio González Robles'},
-  {position: 3, name: 'Ezequiel Pozo Fernandez'},
-  {position: 4, name: 'Ismael Milan Márquez'},
-  {position: 5, name: 'Jose Carlos Gadea Doncel'},
-  {position: 6, name: 'Miguel Sanchez Infante'},
-  {position: 7, name: 'Alfonso García Bellod'},
-  {position: 8, name: 'David Mateos'},
-  {position: 9, name: 'David Panal Cabrera'},
-  {position: 10, name: 'Emilio Jose Palma Barroso'},
-  {position: 11, name: 'Jorge Carlos Lozano Gomez'},
-  {position: 12, name: 'Jose Antonio Beltrán Márquez'},
-  {position: 13, name: 'Verónica Padua Castilleja'},
+  {normalH: 9, name: 'Daniel González Morillo', extraH: 1, tlfH: 0},
+  {normalH: 9, name: 'Cristian Antonio González Robles', extraH: 1, tlfH: 0},
+  {normalH: 9, name: 'Ezequiel Pozo Fernandez', extraH: 1, tlfH: 0},
+  {normalH: 9, name: 'Ismael Milan Márquez', extraH: 1, tlfH: 0},
+  {normalH: 9, name: 'Jose Carlos Gadea Doncel', extraH: 1, tlfH: 0},
+  {normalH: 8, name: 'Miguel Sanchez Infante', extraH: 1, tlfH: 1},
+  {normalH: 9, name: 'Alfonso García Bellod', extraH: 1, tlfH: 1},
+  {normalH: 7, name: 'David Mateos', extraH: 1, tlfH: 1},
+  {normalH: 9, name: 'David Panal Cabrera', extraH: 1, tlfH: 1},
+  {normalH: 9, name: 'Emilio Jose Palma Barroso', extraH: 1, tlfH: 1},
+  {normalH: 9, name: 'Jorge Carlos Lozano Gomez', extraH: 1, tlfH: 1},
+  {normalH: 9, name: 'Jose Antonio Beltrán Márquez', extraH: 1, tlfH: 1},
+  {normalH: 9, name: 'Verónica Padua Castilleja', extraH: 1, tlfH: 1},
 ];
 
 @Component({
@@ -115,7 +117,7 @@ export class AppHome implements OnInit{
   }
 
   private getDaysOfTheMonth(): void{
-    //recuperamos el mes de la fecha en el date picker de la pagina
+    // Recuperamos el mes de la fecha en el datepicker de la página
     let month :number = new Date().getMonth();
     let year  :number = new Date().getFullYear();
     let monthLength : number = new Date(year, (month + 1), 0).getDate();
@@ -129,14 +131,16 @@ export class AppHome implements OnInit{
 
   myFilter = (d: Date): boolean => {
     const day = d.getDay();
-    // Prevent Saturday and Sunday from being selected.
+    // Evitamos que Sábados y Domingos sean días elegibles.
     return day !== 0 && day !== 6;
   }
 
-  public pickDate (sumadre){
+  public pickDate (madao){
     // console.log(sumadre.value);
-    console.log(sumadre.value.toString().split('/',0));
+    let str = madao.value.toString();
+    let splitted = str.split("/")[1];
+    console.log(splitted);
+    return splitted;
     
   }
-
 }

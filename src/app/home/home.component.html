@@ -60,47 +60,45 @@
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
   
-  <!-- <mat-button-toggle-group name="fontStyle" aria-label="Font Style" class="searchButton1"> -->
-    <button  mat-raised-button value="bold" class="searchButton2 searchButton1" (click)="pickDate(madao)"> Buscar</button>
-  <!-- </mat-button-toggle-group> -->
+  <div class="searchButton">
+    <button mat-raised-button class="searchButton2" (click)="pickDate(madao)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Buscar &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+  </div>
   
   <div class="results">
-    <!-- <mat-form-field>
-      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-    </mat-form-field> -->
-    
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef id="headerName"> Nombre Empleado </th>
+        <td mat-cell *matCellDef="let element" id="tableRow">
+          {{element.name}}
+        </td>
+      </ng-container>
+
       <!-- Position Column -->
       <ng-container matColumnDef="{{day}}" *ngFor="let day of daysOfTheMonth">
         <th mat-header-cell *matHeaderCellDef id="headerNum"> {{day|number:'2.0'}} </th>
         <td mat-cell *matCellDef="let element"> 
           <mat-grid-list cols="2">
-            <mat-grid-tile colspan="2" class="first">{{element.position}}</mat-grid-tile>
-            <mat-grid-tile class="inter">2</mat-grid-tile>
-            <mat-grid-tile class="inter">3</mat-grid-tile>
+            <mat-grid-tile colspan="2" class="first">
+              {{element.normalH}}           
+            </mat-grid-tile>
+            <mat-grid-tile class="inter">
+              {{element.extraH}}
+            </mat-grid-tile>
+            <mat-grid-tile class="inter">
+              {{element.tlfH}}
+            </mat-grid-tile>
           </mat-grid-list>
         </td>
       </ng-container>
-    
-      <!-- Name Column -->
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef id="headerName"> Nombre Empleado </th>
-        <td mat-cell *matCellDef="let element" id="tableRow"> {{element.name}} </td>
-      </ng-container>
+
       <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;" id="tableRow"></tr>
     </table>
   </div>
   
-  <!-- <mat-button-toggle-group name="fontStyle" aria-label="Font Style" class="addRemButton">
-    <mat-button-toggle value="bold"><i class="material-icons md-36">face</i></mat-button-toggle>
-  </mat-button-toggle-group>
-  
-  <mat-button-toggle-group name="fontStyle" aria-label="Font Style" class="addRemButton">
-    <mat-button-toggle value="bold"><i class="material-icons md-36">delete_forever</i></mat-button-toggle>
-  </mat-button-toggle-group> -->
-  
-  <mat-button-toggle-group name="fontStyle" aria-label="Font Style" class="exportButton">
-    <mat-button-toggle value="bold" class="exportButton2">Exportar a Excel</mat-button-toggle>
-  </mat-button-toggle-group>
+  <div class="exportButton">
+    <button mat-raised-button class="exportButton2">Exportar a Excel</button>
+  </div>
   
