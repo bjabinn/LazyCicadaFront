@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
-import {MatTableDataSource} from '@angular/material';
- 
+import {MatTableDataSource} from '@angular/material'; 
 
 export interface PeriodicElement {
   name: string;
@@ -35,7 +34,6 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class AppHome implements OnInit{
   title = 'HeadCount';
-  public NombreDeUsuario: string = "Admin";
 
   centroControl = new FormControl();
   lineaControl = new FormControl();
@@ -136,7 +134,6 @@ export class AppHome implements OnInit{
   }
 
   public pickDate (madao){
-    // console.log(sumadre.value);
     let str = madao.value.toString();
     let splitted = str.split("/")[1];
     console.log(splitted);
