@@ -1,110 +1,109 @@
 
 <form class="basic-container">
-    <mat-form-field >
-      <input (focus)="startObservable(1)" type="text" placeholder="Centro" aria-label="Centros" matInput [formControl]="centroControl" (keyup)="applyFilter($event.target.value)" [matAutocomplete]="auto">
-      <mat-autocomplete #auto="matAutocomplete">
-        <mat-option *ngFor="let centro of filteredOptionsCentros | async" [value]="centro">
-          {{centro}}
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
-  </form>
-  
-  <form class="basic-container">
-    <mat-form-field>
-      <input (focus)="startObservable(2)" type="text" placeholder="Linea" aria-label="Lineas" matInput [formControl]="lineaControl" (keyup)="applyFilter($event.target.value)" [matAutocomplete]="autoLineas">
-      <mat-autocomplete #autoLineas="matAutocomplete">
-        <mat-option *ngFor="let linea of filteredOptionsLineas | async" [value]="linea">
-          {{linea}}
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
-  </form>
-  
-  <form class="basic-container">
-    <mat-form-field>
-      <input (focus)="startObservable(3)" type="text" placeholder="Celda" aria-label="Celdas" matInput [formControl]="celdaControl" (keyup)="applyFilter($event.target.value)" [matAutocomplete]="autoCeldas">
-      <mat-autocomplete #autoCeldas="matAutocomplete">
-        <mat-option *ngFor="let celda of filteredOptionsCeldas | async" [value]="celda">
-          {{celda}}
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
-  </form>
-  
-  <form class="basic-container">
-    <mat-form-field>
-      <input (focus)="startObservable(4)" type="text" placeholder="Estado" aria-label="Estados" matInput [formControl]="estadoControl" (keyup)="applyFilter($event.target.value)" [matAutocomplete]="autoEstados">
-      <mat-autocomplete #autoEstados="matAutocomplete">
-        <mat-option *ngFor="let estado of filteredOptionsEstados | async" [value]="estado">
-          {{estado}}
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
-  </form>
-  
-  <!-- <form class="example-form basic-container">
-    <mat-form-field class="example-full-width">
-      <input (focus)="startObservable(4)" type="text" placeholder="Cuenta" aria-label="Cuentas" matInput [formControl]="cuentaControl" (keyup)="applyFilter($event.target.value)" [matAutocomplete]="autoCuentas">
-      <mat-autocomplete #autoCuentas="matAutocomplete">
-        <mat-option *ngFor="let cuenta of filteredOptionsCuentas | async" [value]="cuenta">
-          {{cuenta}}
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
-  </form> -->
-  
-  <!-- <mat-form-field class="basic-container">
-    <input #madao matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker" placeholder="Elige una fecha">
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field> -->
-
-  <mat-form-field class="basic-container">
-    <input #madao matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker" placeholder="Elige una fecha">
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker startView="year"></mat-datepicker>
+  <mat-form-field >
+    <input (focus)="startObservable(1)" type="text" placeholder="Center" aria-label="Centros" matInput [formControl]="centroControl" (keyup)="applyFilter($event.target.value)" [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let centro of filteredOptionsCentros | async" [value]="centro">
+        {{centro}}
+      </mat-option>
+    </mat-autocomplete>
   </mat-form-field>
-  
-  <div class="searchButton">
-    <button mat-raised-button class="searchButton2" (click)="pickDate(madao)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Buscar &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
-  </div>
-  
-  <div class="table-responsive mat-elevation-z4 results">
-    <table mat-table [dataSource]="dataSource">
+</form>
 
-      <!-- Name Column -->
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef id="headerName"> Nombre Empleado </th>
-        <td mat-cell *matCellDef="let element" id="tableRow">
-          {{element.name}}
-        </td>
-      </ng-container>
+<form class="basic-container">
+  <mat-form-field>
+    <input (focus)="startObservable(2)" type="text" placeholder="Line" aria-label="Lineas" matInput [formControl]="lineaControl" (keyup)="applyFilter($event.target.value)" [matAutocomplete]="autoLineas">
+    <mat-autocomplete #autoLineas="matAutocomplete">
+      <mat-option *ngFor="let linea of filteredOptionsLineas | async" [value]="linea">
+        {{linea}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
 
-      <!-- Position Column -->
-      <ng-container matColumnDef="{{day}}" *ngFor="let day of daysOfTheMonth">
-        <th mat-header-cell *matHeaderCellDef id="headerNum"> {{day|number:'2.0'}} </th>
-        <td mat-cell *matCellDef="let element" contenteditable="true"> 
-          <mat-grid-list cols="2">
-            <mat-grid-tile colspan="2" class="first">
-              {{element.normalH}}           
-            </mat-grid-tile>
-            <mat-grid-tile class="inter">
-              {{element.extraH}}
-            </mat-grid-tile>
-            <mat-grid-tile class="inter">
-              {{element.tlfH}}
-            </mat-grid-tile>
-          </mat-grid-list>
-        </td>
-      </ng-container>
+<form class="basic-container">
+  <mat-form-field>
+    <input (focus)="startObservable(3)" type="text" placeholder="Cell" aria-label="Celdas" matInput [formControl]="celdaControl" (keyup)="applyFilter($event.target.value)" [matAutocomplete]="autoCeldas">
+    <mat-autocomplete #autoCeldas="matAutocomplete">
+      <mat-option *ngFor="let celda of filteredOptionsCeldas | async" [value]="celda">
+        {{celda}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;" id="tableRow"></tr>
-    </table>
-  </div>
-  
-  <div class="exportButton">
-    <button mat-raised-button class="exportButton2">Exportar a Excel</button>
-  </div>
-  
+<form class="basic-container">
+  <mat-form-field>
+    <input (focus)="startObservable(4)" type="text" placeholder="State" aria-label="Estados" matInput [formControl]="estadoControl" (keyup)="applyFilter($event.target.value)" [matAutocomplete]="autoEstados">
+    <mat-autocomplete #autoEstados="matAutocomplete">
+      <mat-option *ngFor="let estado of filteredOptionsEstados | async" [value]="estado">
+        {{estado}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
+
+<!-- <form class="example-form basic-container">
+  <mat-form-field class="example-full-width">
+    <input (focus)="startObservable(4)" type="text" placeholder="Cuenta" aria-label="Cuentas" matInput [formControl]="cuentaControl" (keyup)="applyFilter($event.target.value)" [matAutocomplete]="autoCuentas">
+    <mat-autocomplete #autoCuentas="matAutocomplete">
+      <mat-option *ngFor="let cuenta of filteredOptionsCuentas | async" [value]="cuenta">
+        {{cuenta}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form> -->
+
+<!-- <mat-form-field class="basic-container">
+  <input #madao matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker" placeholder="Elige una fecha">
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field> -->
+
+<mat-form-field class="basic-container">
+  <input #madao matInput [matDatepickerFilter]="" [matDatepicker]="picker" placeholder="Choose a date">
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker startView="year"></mat-datepicker>
+</mat-form-field>
+
+<div class="searchButton">
+  <button mat-raised-button class="searchButton2" (click)="pickYear(madao); pickMonth(madao); getDaysOfTheMonth()">Search</button>
+</div>
+
+<div class="table-responsive mat-elevation-z4 results">
+  <table mat-table [dataSource]="dataSource">
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef id="headerName"> Employee Name </th>
+      <td mat-cell *matCellDef="let element" id="tableRow">
+        {{element.name}}
+      </td>
+    </ng-container>
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="{{day}}" *ngFor="let day of daysOfTheMonth">
+      <th mat-header-cell *matHeaderCellDef id="headerNum"> {{day|number:'2.0'}} </th>
+      <td mat-cell *matCellDef="let element" contenteditable="true"> 
+        <mat-grid-list cols="2">
+          <mat-grid-tile colspan="2" class="first">
+            {{element.normalH}}           
+          </mat-grid-tile>
+          <mat-grid-tile class="inter">
+            {{element.extraH}}
+          </mat-grid-tile>
+          <mat-grid-tile class="inter">
+            {{element.tlfH}}
+          </mat-grid-tile>
+        </mat-grid-list>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" id="tableRow"></tr>
+  </table>
+</div>
+
+<div class="exportButton">
+  <button mat-raised-button class="exportButton2">Export to Excel</button>
+</div>

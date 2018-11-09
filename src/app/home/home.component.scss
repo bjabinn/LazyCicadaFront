@@ -12,28 +12,29 @@ h1, h2, h3, h4 {
 }
 
 .basic-container {
-  padding: 3em 2em 1em;
-  width: 14em;
+  padding: 3em 2.2% 1em;
+  width: 15%;
   float: left;
 }
 
 .results {
-  margin-left: 2em;
-  width: 85em;
-  height: 28em;
+  margin-left: 2.2%;
+  width: 95%;
+  height: 30em;
   border: 1px solid #99AD01;
   overflow: auto;
 }
 
 .searchButton {
   float: right;
-  margin: 3.8em 3em 0 0;
+  margin: 3.8em 2.8% 0 0;
 }
 
-// .searchButton2 {
-//   // padding: 0 2em;
-//   color:  rgb(165, 187, 0);
-// }
+.searchButton2 {
+  padding: 0 2.8em;
+  outline: 0px;
+  // color:  rgb(165, 187, 0);
+}
 
 .addRemButton {
   margin: 2em 0 0 2em;
@@ -41,12 +42,13 @@ h1, h2, h3, h4 {
 
 .exportButton {
   float: right;
-  margin: 2em 3em 0 0;
+  margin: 2em 2.8% 0 0;
 }
 
-// .exportButton2 {
-//     color:  rgb(165, 187, 0);
-//   }
+.exportButton2 {
+  outline: 0px;
+  // color:  rgb(165, 187, 0);
+}
 
 /* Structure */
 table {
@@ -68,7 +70,7 @@ mat-grid-tile {
 }
 
 #headerNum {
-    text-align: center;
+  text-align: center;
 }
 
 #headerName {
@@ -77,14 +79,14 @@ mat-grid-tile {
 }
 
 td.mat-cell:last-of-type, th.mat-header-cell:last-of-type {
-    padding-right: 0px;
+  padding-right: 0px;
 }
 
 #tableRow {
-    width: 219px;
-    height: 38px ;
+  width: 219px;
+  height: 43px ;
 }
 
 .mat-cell, .mat-footer-cell {
-    font-size: 11px;
+  font-size: 11px;
 }

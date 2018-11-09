@@ -11,18 +11,21 @@ export interface PeriodicElement {
   tlfH: number;
 }
 
+let selectedMonth: number;
+let selectedYear: number;
+
 const ELEMENT_DATA: PeriodicElement[] = [
   {normalH: 9, name: 'Daniel González Morillo', extraH: 1, tlfH: 0},
   {normalH: 9, name: 'Cristian Antonio González Robles', extraH: 1, tlfH: 0},
-  {normalH: 9, name: 'Ezequiel Pozo Fernandez', extraH: 1, tlfH: 0},
+  {normalH: 9, name: 'Ezequiel Pozo Fernández', extraH: 1, tlfH: 0},
   {normalH: 9, name: 'Ismael Milan Márquez', extraH: 1, tlfH: 0},
   {normalH: 9, name: 'Jose Carlos Gadea Doncel', extraH: 1, tlfH: 0},
-  {normalH: 8, name: 'Miguel Sanchez Infante', extraH: 1, tlfH: 1},
+  {normalH: 8, name: 'Miguel Sánchez Infante', extraH: 1, tlfH: 1},
   {normalH: 9, name: 'Alfonso García Bellod', extraH: 1, tlfH: 1},
   {normalH: 7, name: 'David Mateos', extraH: 1, tlfH: 1},
   {normalH: 9, name: 'David Panal Cabrera', extraH: 1, tlfH: 1},
-  {normalH: 9, name: 'Emilio Jose Palma Barroso', extraH: 1, tlfH: 1},
-  {normalH: 9, name: 'Jorge Carlos Lozano Gomez', extraH: 1, tlfH: 1},
+  {normalH: 9, name: 'Emilio José Palma Barroso', extraH: 1, tlfH: 1},
+  {normalH: 9, name: 'Jorge Carlos Lozano Gómez', extraH: 1, tlfH: 1},
   {normalH: 9, name: 'Jose Antonio Beltrán Márquez', extraH: 1, tlfH: 1},
   {normalH: 9, name: 'Verónica Padua Castilleja', extraH: 1, tlfH: 1},
 ];
@@ -51,11 +54,11 @@ export class AppHome implements OnInit{
 
   daysOfTheMonth: number[];
 
-  displayedColumns: string[] = ['name'];
+  displayedColumns: string[] = [];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
   ngOnInit(){
-    this.getDaysOfTheMonth();
+    
   }
 
   startObservable(input:number){
@@ -114,16 +117,22 @@ export class AppHome implements OnInit{
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  private getDaysOfTheMonth(): void{
-    // Recuperamos el mes de la fecha en el datepicker de la página
-    let month :number = new Date().getMonth();
-    let year  :number = new Date().getFullYear();
-    let monthLength : number = new Date(year, (month + 1), 0).getDate();
+  public getDaysOfTheMonth(): void{
     this.daysOfTheMonth = [];
+    this.displayedColumns = ['name'];
+    // Recuperamos el mes de la fecha en el datepicker de la página
+    let month :number = selectedMonth; 
+    let year  :number = selectedYear;
+    let monthLength : number = new Date(year, month, 0).getDate();
+
     for(let i = 1; i <= monthLength ; i++)
     {
       this.daysOfTheMonth.push(i);
       this.displayedColumns.push(i.toString());
+    }
+
+    if (selectedMonth == null && selectedYear == null) {
+      this.daysOfTheMonth = [];
     }
   }
 
@@ -133,11 +142,21 @@ export class AppHome implements OnInit{
     return day !== 0 && day !== 6;
   }
 
-  public pickDate (madao){
-    let str = madao.value.toString();
-    let splitted = str.split("/")[1];
-    console.log(splitted);
-    return splitted;
+  public pickYear (madao){
+    let strYear = madao.value.toString();
+    let splittedYear = strYear.split("/")[2];
+    selectedYear = splittedYear;
+    console.log(splittedYear);
+    return splittedYear;
+    
+  }
+
+  public pickMonth (madao){
+    let strMonth = madao.value.toString();
+    let splittedMonth = strMonth.split("/")[0];
+    selectedMonth = splittedMonth;
+    console.log(splittedMonth);
+    return splittedMonth;
     
   }
 }
