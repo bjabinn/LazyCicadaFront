@@ -19,15 +19,20 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  login() : void {
-    if(this.IsValidUser()) {
-      this.router.navigate(["appHome"])
+  login(): void {
+    if (this.IsValidUser()) {
+      this.router.navigate(['appHome']);
     } else {
-      alert("Invalid credentials")
+      alert('Invalid credentials');
     }
   }
 
   IsValidUser(): boolean {
-    return this.username === 'admin' && this.password === 'admin';
+    let isValidUser:boolean = false;
+    if (this.username != null && this.password != null) {
+        isValidUser = this.username === 'admin' && this.password === 'admin';
+        this.authService.login(this.username, this.password).subscribe()
+    }
+    return  isValidUser;
   }
 }
