@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Router, ParamMap, ActivatedRoute } from '@angular/router'
-import { MatDialog } from '@angular/material'
+import { Router, ParamMap, ActivatedRoute } from '@angular/router';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-login',
@@ -28,10 +28,10 @@ export class LoginComponent implements OnInit {
   }
 
   IsValidUser(): boolean {
-    let isValidUser:boolean = false;
+    let isValidUser: boolean = false;
     if (this.username != null && this.password != null) {
         isValidUser = this.username === 'admin' && this.password === 'admin';
-        this.authService.login(this.username, this.password).subscribe()
+        this.authService.login(this.username, this.password).subscribe();
     }
     return  isValidUser;
   }
