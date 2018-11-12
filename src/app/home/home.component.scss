@@ -13,7 +13,7 @@ h1, h2, h3, h4 {
 
 .basic-container {
   padding: 3em 2.2% 1em;
-  width: 15%;
+  width: 14%;
   float: left;
 }
 
@@ -54,20 +54,38 @@ h1, h2, h3, h4 {
 table {
   width: 100%;
 }
-mat-grid-tile {
-  border: 0.1em solid rgba(0, 0, 0, 0.12);
-}
+// mat-grid-tile {
+//   border: 0.1em solid rgba(0, 0, 0, 0.12);
+// }
 
 .first {
-  border-top-width: 0px;
-  border-right-width: 0px;
+  // border-top-width: 0px;
+  // border-right-width: 0px;
+  background-color: rgba(203, 252, 165, 0.45);
 }
 
-.inter {
-  border-top-width: 0px;
-  border-right-width: 0px;
-  border-bottom-width: 0px;
+.second {
+  background-color: rgb(166, 255, 98);
 }
+
+// .first, .mat-grid-tile{
+//   width: 41px;
+//   height: 21px;
+// }
+
+// .inter1 {
+//   border-top-width: 0px;
+//   border-right-width: 0px;
+//   border-bottom-width: 0px;
+//   background-color: #A8CDF6;
+// }
+
+// .inter2 {
+//   border-top-width: 0px;
+//   border-right-width: 0px;
+//   border-bottom-width: 0px;
+//   background-color: #FFF1A7;
+// }
 
 #headerNum {
   text-align: center;
@@ -84,9 +102,19 @@ td.mat-cell:last-of-type, th.mat-header-cell:last-of-type {
 
 #tableRow {
   width: 219px;
-  height: 43px ;
+  height: 25px;
+  padding-left: 18px;
 }
 
 .mat-cell, .mat-footer-cell {
   font-size: 11px;
+}
+
+// .mat-cell, .cdk-column, .mat-column {
+//   width: 2.8%;
+//   height: 2.8%;
+// }
+
+.outLine {
+  outline: 0px;
 }

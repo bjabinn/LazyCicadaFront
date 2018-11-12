@@ -42,15 +42,18 @@ export class AppHome implements OnInit{
   lineaControl = new FormControl();
   celdaControl = new FormControl();
   estadoControl = new FormControl();
+  horasControl = new FormControl();
   Centros: string[] = ['Valencia', 'Sevilla', 'Temuco'];
   Lineas: string[] = ['1', '2', '3'];
   Celdas: string[] = ['Tesco', 'BCA', 'Randstad'];
   Estados: string[] = ['Previsión', 'Intermedio', 'Cerrado'];
+  Horas: string[] = ['Normales', 'Extra', 'TLF'];
   seleccionado:number = 1;
   filteredOptionsCentros: Observable<string[]>;
   filteredOptionsLineas: Observable<string[]>;
   filteredOptionsCeldas: Observable<string[]>;
   filteredOptionsEstados: Observable<string[]>;
+  filteredOptionsHoras: Observable<string[]>;
 
   daysOfTheMonth: number[];
 
@@ -93,6 +96,13 @@ export class AppHome implements OnInit{
             map(value => this._filter(value))
           );
     }
+    if (this.seleccionado==5) {
+      this.filteredOptionsHoras = this.horasControl.valueChanges
+          .pipe(
+            startWith(''),
+            map(value => this._filter(value))
+          );
+    }
     
   }
 
@@ -111,6 +121,9 @@ export class AppHome implements OnInit{
     else if(this.seleccionado==4){
       return this.Estados.filter(option => option.toLowerCase().includes(filterValue));
     }
+    else if(this.seleccionado==5){
+      return this.Horas.filter(option => option.toLowerCase().includes(filterValue));
+    }
   }
   
   applyFilter(filterValue: string) {
@@ -119,20 +132,22 @@ export class AppHome implements OnInit{
 
   public getDaysOfTheMonth(): void{
     this.daysOfTheMonth = [];
-    this.displayedColumns = ['name'];
     // Recuperamos el mes de la fecha en el datepicker de la página
     let month :number = selectedMonth; 
     let year  :number = selectedYear;
     let monthLength : number = new Date(year, month, 0).getDate();
 
-    for(let i = 1; i <= monthLength ; i++)
-    {
-      this.daysOfTheMonth.push(i);
-      this.displayedColumns.push(i.toString());
-    }
 
-    if (selectedMonth == null && selectedYear == null) {
-      this.daysOfTheMonth = [];
+    if (selectedMonth != undefined && selectedYear != undefined) {
+      this.displayedColumns = ['name'];
+      for(let i = 1; i <= monthLength ; i++)
+      {
+        this.daysOfTheMonth.push(i);
+        this.displayedColumns.push(i.toString());
+      }
+      
+    }else if (selectedYear == undefined) {
+      this.displayedColumns = [];
     }
   }
 
@@ -146,7 +161,6 @@ export class AppHome implements OnInit{
     let strYear = madao.value.toString();
     let splittedYear = strYear.split("/")[2];
     selectedYear = splittedYear;
-    console.log(splittedYear);
     return splittedYear;
     
   }
@@ -155,7 +169,6 @@ export class AppHome implements OnInit{
     let strMonth = madao.value.toString();
     let splittedMonth = strMonth.split("/")[0];
     selectedMonth = splittedMonth;
-    console.log(splittedMonth);
     return splittedMonth;
     
   }

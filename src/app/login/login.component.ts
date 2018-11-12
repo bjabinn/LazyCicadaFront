@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     let isValidUser: boolean = false;
     if (this.username != null && this.password != null) {
         isValidUser = this.username === 'admin' && this.password === 'admin';
-        this.authService.login(this.username, this.password).subscribe();
+        // this.authService.login(this.username, this.password).subscribe();
     }
     return  isValidUser;
   }
