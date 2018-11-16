@@ -132,13 +132,14 @@ export class AppHome implements OnInit{
 
   public getDaysOfTheMonth(): void{
     this.daysOfTheMonth = [];
+    this.displayedColumns = [];
     // Recuperamos el mes de la fecha en el datepicker de la página
-    let month :number = selectedMonth; 
+    let month :number; 
+    month = selectedMonth; 
     let year  :number = selectedYear;
     let monthLength : number = new Date(year, month, 0).getDate();
 
-
-    if (selectedMonth != undefined && selectedYear != undefined) {
+    if (selectedMonth != undefined && selectedYear != undefined && this.horasControl.value != null) {
       this.displayedColumns = ['name'];
       for(let i = 1; i <= monthLength ; i++)
       {

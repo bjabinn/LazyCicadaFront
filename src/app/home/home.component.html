@@ -71,6 +71,7 @@
 </div>
 
 <div class="table-responsive table-striped mat-elevation-z4 results">
+  <div *ngIf="horasControl.value == 'Normales'">
   <table mat-table [dataSource]="dataSource">
 
     <!-- Name Column -->
@@ -84,14 +85,60 @@
     <!-- Position Column -->
       <ng-container matColumnDef="{{day}}" *ngFor="let day of daysOfTheMonth">
         <th mat-header-cell *matHeaderCellDef id="headerNum"> {{day|number:'2.0'}} </th>
-        <td mat-cell *matCellDef="let element" id="headerNum" class="outLine first" contenteditable="true"> 
+        <td mat-cell *matCellDef="let element" id="headerNum" class="outLine first" contenteditable="true">
           {{element.normalH}}
         </td>
       </ng-container>
-
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;" id="tableRow"></tr>
   </table>
+  </div>
+
+  <div *ngIf="horasControl.value == 'Extra'">
+    <table mat-table [dataSource]="dataSource">
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef id="headerName"> Employee Name </th>
+        <td mat-cell *matCellDef="let element" id="tableRow">
+          {{element.name}}
+        </td>
+      </ng-container>
+  
+      <!-- Position Column -->
+        <ng-container matColumnDef="{{day}}" *ngFor="let day of daysOfTheMonth">
+          <th mat-header-cell *matHeaderCellDef id="headerNum"> {{day|number:'2.0'}} </th>
+          <td mat-cell *matCellDef="let element" id="headerNum" class="outLine second" contenteditable="true">
+            {{element.extraH}}
+          </td>
+        </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" id="tableRow"></tr>
+    </table>
+  </div>
+
+  <div *ngIf="horasControl.value == 'TLF'">
+    <table mat-table [dataSource]="dataSource">
+    
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef id="headerName"> Employee Name </th>
+        <td mat-cell *matCellDef="let element" id="tableRow">
+          {{element.name}}
+        </td>
+      </ng-container>
+
+      <!-- Position Column -->
+        <ng-container matColumnDef="{{day}}" *ngFor="let day of daysOfTheMonth">
+          <th mat-header-cell *matHeaderCellDef id="headerNum"> {{day|number:'2.0'}} </th>
+          <td mat-cell *matCellDef="let element" id="headerNum" class="outLine third" contenteditable="true">
+            {{element.tlfH}}
+          </td>
+        </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" id="tableRow"></tr>
+    </table>
+  </div>
 </div>
 
 <div class="exportButton">
