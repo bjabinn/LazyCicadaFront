@@ -9,7 +9,5 @@ import { Router } from '@angular/router';
 })
 
 export class AppComponent {
-  public NombreDeUsuario: string = 'Admin';
-
-  constructor(public router: Router) {}
+  constructor(private router: Router) {}
 }

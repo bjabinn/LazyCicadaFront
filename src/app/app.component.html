@@ -1,11 +1,3 @@
-<div class="no-print" id='cssmenu' >
-  <ul *ngIf="router.url != '/' && router.url != '/login'" class="text-center">
-    <li class="active text-center" id="inicio"><a routerLink="/home">Facturaci&oacute;n</a></li>
-    <li class="text-center titulo noSelect">HeadCount</li>
-    <li class="text-center active float-right" id="cerrarsesion"><a routerLink="/login">Cerrar sesi&oacute;n</a></li>
-    <li class="usuario text-right float-right noSelect" *ngIf="router.url != '/' && router.url != '/login' && NombreDeUsuario != null">Usuario: <b>{{NombreDeUsuario}}</b></li>
-  </ul>
-</div>
 
 <router-outlet></router-outlet>
 

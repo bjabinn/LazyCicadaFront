@@ -8,10 +8,52 @@
   flex: 1 1 auto;
 }
 .login-card {
-  width: 400px;
-  margin: 10% auto;
+  width: 40em;
+  margin: 5% auto;
   color: #4F8511;
+  box-shadow: -6px 6px 5px 3px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+  border-radius: .5em;
 }
 .mat-card-title{
   font-size: 1.2em;
+}
+
+.mat-raised-button{
+  background-color: #98aa00;
+  color: white;
+}
+
+#title_and_icon_div {
+  display: flex;                  /* establish flex container */
+  flex-direction: row;            /* default value; can be omitted */
+  flex-wrap: nowrap;              /* default value; can be omitted */
+  justify-content: space-between; /* switched from default (flex-start, see below) */
+  //background-color: lightyellow;
+  margin: 1em 0 0 0;
+  height: 5em;
+}
+#title_and_icon_div > div {
+  width: 33%;
+  //border: 2px dashed red;
+}
+
+div.title {
+  margin: 2.5em 0em 0em 0em;
+}
+h1#title {
+  text-align: center;
+  margin-bottom: .5rem;
+  font-family: Raleway,sans-serif;
+  font-weight: 500;
+  line-height: 1.2;
+  color: inherit;
+}
+
+div.icon {
+  text-align: center;
+}
+
+.corporation {
+  max-width: 9.4em;
+  padding: 0em 0em 0em 0em
 }

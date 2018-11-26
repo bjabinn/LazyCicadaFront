@@ -1,4 +1,4 @@
-
+<app-header [user]="user"></app-header>
 <form class="basic-container">
   <mat-form-field >
     <input (focus)="startObservable(1)" type="text" placeholder="Center" aria-label="Centros" matInput [formControl]="centroControl" (keyup)="applyFilter($event.target.value)" [matAutocomplete]="auto">

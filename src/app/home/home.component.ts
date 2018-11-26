@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
-import {MatTableDataSource} from '@angular/material'; 
+import {MatTableDataSource} from '@angular/material';
+import { CommunicationService } from '../Services/Communication/communication.service';
+import { Router } from '@angular/router';
+import { User } from '../models/User/user';
 
 export interface PeriodicElement {
   name: string;
@@ -35,8 +38,12 @@ const ELEMENT_DATA: PeriodicElement[] = [
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class AppHome implements OnInit{
+export class HomeComponent implements OnInit {
+  constructor(private commSVC: CommunicationService,
+              private router: Router) {}
+
   title = 'HeadCount';
+  user: User;
 
   centroControl = new FormControl();
   lineaControl = new FormControl();
@@ -48,7 +55,7 @@ export class AppHome implements OnInit{
   Celdas: string[] = ['Tesco', 'BCA', 'Randstad'];
   Estados: string[] = ['Previsión', 'Intermedio', 'Cerrado'];
   Horas: string[] = ['Normales', 'Extra', 'TLF'];
-  seleccionado:number = 1;
+  seleccionado: number;
   filteredOptionsCentros: Observable<string[]>;
   filteredOptionsLineas: Observable<string[]>;
   filteredOptionsCeldas: Observable<string[]>;
@@ -60,94 +67,101 @@ export class AppHome implements OnInit{
   displayedColumns: string[] = [];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
-  ngOnInit(){
-    
+  ngOnInit() {
+      this.commSVC.getUserMessage().subscribe(
+      (data) => {
+        if ( data !== undefined && data !== null && data.userName !== undefined && data.userName !== null  && data.userName !== '' ) {
+          this.user = data;
+        } else {
+          this.router.navigate(['/login']);
+        }
+      },
+      (error) => {
+
+      }
+    );
+    this.seleccionado = 1;
   }
 
-  startObservable(input:number){
+  startObservable(input: number) {
     this.seleccionado = input;
 
-    if (this.seleccionado==1) {
+    if (this.seleccionado === 1 ) {
       this.filteredOptionsCentros = this.centroControl.valueChanges
         .pipe(
           startWith(''),
           map(value => this._filter(value))
-        ); 
+        );
     }
 
-    if (this.seleccionado==2) {
+    if (this.seleccionado === 2) {
       this.filteredOptionsLineas = this.lineaControl.valueChanges
           .pipe(
             startWith(''),
             map(value => this._filter(value))
           );
     }
-    if (this.seleccionado==3) {
+    if (this.seleccionado === 3) {
       this.filteredOptionsCeldas = this.celdaControl.valueChanges
           .pipe(
             startWith(''),
             map(value => this._filter(value))
           );
     }
-    if (this.seleccionado==4) {
+    if (this.seleccionado === 4) {
       this.filteredOptionsEstados = this.estadoControl.valueChanges
           .pipe(
             startWith(''),
             map(value => this._filter(value))
           );
     }
-    if (this.seleccionado==5) {
+    if (this.seleccionado === 5) {
       this.filteredOptionsHoras = this.horasControl.valueChanges
           .pipe(
             startWith(''),
             map(value => this._filter(value))
           );
     }
-    
+
   }
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 
-    if (this.seleccionado==1) {
+    if (this.seleccionado === 1) {
       return this.Centros.filter(option => option.toLowerCase().includes(filterValue));
-    }
-    else if(this.seleccionado==2){
+    } else if (this.seleccionado === 2) {
       return this.Lineas.filter(option => option.toLowerCase().includes(filterValue));
-    }
-    else if(this.seleccionado==3){
+    } else if (this.seleccionado === 3) {
       return this.Celdas.filter(option => option.toLowerCase().includes(filterValue));
-    }
-    else if(this.seleccionado==4){
+    } else if (this.seleccionado === 4) {
       return this.Estados.filter(option => option.toLowerCase().includes(filterValue));
-    }
-    else if(this.seleccionado==5){
+    } else if (this.seleccionado === 5) {
       return this.Horas.filter(option => option.toLowerCase().includes(filterValue));
     }
   }
-  
+
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  public getDaysOfTheMonth(): void{
+  public getDaysOfTheMonth(): void {
     this.daysOfTheMonth = [];
     this.displayedColumns = [];
     // Recuperamos el mes de la fecha en el datepicker de la página
-    let month :number; 
-    month = selectedMonth; 
-    let year  :number = selectedYear;
-    let monthLength : number = new Date(year, month, 0).getDate();
+    let month: number;
+    month = selectedMonth;
+    const year: number = selectedYear;
+    const monthLength: number = new Date(year, month, 0).getDate();
 
-    if (selectedMonth != undefined && selectedYear != undefined && this.horasControl.value != null) {
+    if (selectedMonth !== undefined && selectedYear !== undefined && this.horasControl.value != null) {
       this.displayedColumns = ['name'];
-      for(let i = 1; i <= monthLength ; i++)
-      {
+      for (let i = 1; i <= monthLength ; i++) {
         this.daysOfTheMonth.push(i);
         this.displayedColumns.push(i.toString());
       }
-      
-    }else if (selectedYear == undefined) {
+
+    } else if (selectedYear === undefined) {
       this.displayedColumns = [];
     }
   }
@@ -158,19 +172,17 @@ export class AppHome implements OnInit{
     return day !== 0 && day !== 6;
   }
 
-  public pickYear (madao){
-    let strYear = madao.value.toString();
-    let splittedYear = strYear.split("/")[2];
+  public pickYear (madao) {
+    const strYear = madao.value.toString();
+    const splittedYear = strYear.split('/')[2];
     selectedYear = splittedYear;
     return splittedYear;
-    
   }
 
-  public pickMonth (madao){
-    let strMonth = madao.value.toString();
-    let splittedMonth = strMonth.split("/")[0];
+  public pickMonth (madao) {
+    const strMonth = madao.value.toString();
+    const splittedMonth = strMonth.split('/')[0];
     selectedMonth = splittedMonth;
     return splittedMonth;
-    
   }
 }

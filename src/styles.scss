@@ -1,16 +1,45 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/theming';
-@import url('//fonts.googleapis.com/icon?family=Material+Icons');
-
+@import url('https://fonts.googleapis.com/css?family=Raleway');
 @include mat-core();
 
-$primary: mat-palette($mat-light-green, 500);
-$accent:  mat-palette($mat-light-green, 500);
-$warn:    mat-palette($mat-red, 500);
+$mat-everis:(
+    50:#5c981b,
+    100: #c8e6c9,
+    200: #a5d6a7,
+    300: #81c784,
+    400: #66bb6a,
+    500: #4caf50,
+    600: #43a047,
+    700: #388e3c,
+    800: #2e7d32,
+    900: #1b5e20,
+    A100: #b9f6ca,
+    A200: #69f0ae,
+    A400: #00e676,
+    A700: #00c853,
+    contrast: (
+      50: #5c981b,
+      100: $dark-primary-text,
+      200: $dark-primary-text,
+      300: $dark-primary-text,
+      400: $dark-primary-text,
+      500: $dark-primary-text,
+      600: $light-primary-text,
+      700: $light-primary-text,
+      800: $light-primary-text,
+      900: $light-primary-text,
+      A100: $dark-primary-text,
+      A200: $dark-primary-text,
+      A400: $dark-primary-text,
+      A700: $dark-primary-text,
+    )
+  );
 
-$config: mat-typography-config();
+$my-app-primary: mat-palette($mat-everis, 50);
+$my-app-accent:  mat-palette($mat-everis, 50);
+$my-app-warn:    mat-palette($mat-deep-orange);
 
+$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
 
-$theme: mat-light-theme($primary, $accent, $warn);
-
-@include angular-material-theme($theme);
+@include angular-material-theme($my-app-theme);

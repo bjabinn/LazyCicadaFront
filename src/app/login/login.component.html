@@ -1,3 +1,13 @@
+<app-header></app-header>
+<div id="title_and_icon_div">
+  <div class="left"></div>
+  <div class="title">
+    <h1 id="title">Head Count</h1>
+  </div>
+  <div class="icon">
+    <img class="corporation" src="assets/icons/everis.png" />
+  </div>
+</div>
   <mat-card class="login-card">
     <mat-card-header>
       <mat-card-title>Login</mat-card-title>
@@ -8,7 +18,7 @@
           <tr>
             <td>
               <mat-form-field class="example-full-width">
-              <input class="input-box placeholder ng-pristine ng-invalid ng-invalid-required" matInput placeholder="Username" [(ngModel)]="username" name="username" required autofocus>
+              <input class="input-box placeholder ng-pristine ng-invalid ng-invalid-required" matInput placeholder="UserName" [(ngModel)]="userName" name="userName" required autofocus>
               </mat-form-field>
             </td>
           </tr>
@@ -21,6 +31,15 @@
       <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button (click)="login()" color="primary">Login</button>
+      <button class="" mat-raised-button (click)="signUp()" color="primary">Login</button>
     </mat-card-actions>
   </mat-card>
+
+
+  <app-modal appModal [(visible)]="visible" title="Se ha equivocado al conectarse">
+    <ul class="mq-modal-list">
+      <li class="mq-modal-list__items"><strong></strong></li>
+      <li class="mq-modal-list__items"><strong></strong></li>
+      <li class="mq-modal-list__items"><strong></strong></li>
+    </ul>
+  </app-modal>

@@ -1,0 +1,13 @@
+<ng-container appModal> 
+  <div  class="mq-modal" id="informacion" *ngIf="isVisible">
+    <div class="mq-modal__box">
+      <header class="mq-modal__header">
+        <strong class="mq-modal__title">{{title}}</strong>
+        <button class="mq-modal__close fa fa-close" type="button" (click)="closeModal($event)"><span class="t-hideAccessible">Close</span></button>
+      </header>
+      <div class="mq-modal__container">
+        <ng-content></ng-content>
+      </div>
+    </div>
+  </div>
+</ng-container>
